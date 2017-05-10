@@ -32,7 +32,8 @@ function(originalImageFileName, outputImageFileName, imagesToUseInMosaic, useGra
 	libForMosaicFull <- createLibraryIndexDataFrame(imagesToUseInMosaic, saveLibraryIndex=F, useGradients=useGradients)
 	libForMosaic <- libForMosaicFull
 	filenameArray <- list.files(imagesToUseInMosaic, full.names=TRUE)
-	originalImage <- jpeg::readJPEG(filenameArray[1])
+	##TODO
+	originalImage <- jpeg::readJPEG(filenameArray[2])
 	xTileSize <- dim(originalImage[,,1])[1]
 	yTileSize <- dim(originalImage[,,1])[2]
 	if(verbose) {
@@ -53,6 +54,7 @@ function(originalImageFileName, outputImageFileName, imagesToUseInMosaic, useGra
 		cat(paste("    -- Output image dimensions : ", ((xOrigImgSize-2) * xTileSize )," x ", ((yOrigImgSize-2) * yTileSize), "\n"))
 	}
 
+	libForMosaicFull <- libForMosaicFull[stats::complete.cases(libForMosaicFull),]
 	# Create the mapping functions that will allow the usage of most of the library tiles
 	rInterp <- approxfun(x=summary(as.vector(originalImage[,,1])), y=summary(libForMosaicFull[,2]), rule=2)
 	gInterp <- approxfun(x=summary(as.vector(originalImage[,,2])), y=summary(libForMosaicFull[,3]), rule=2)
@@ -77,6 +79,7 @@ function(originalImageFileName, outputImageFileName, imagesToUseInMosaic, useGra
 		}
 	}
 
+	libForMosaic <- libForMosaicFull
 	# for the length
 	npixels <- length(pCoord[,1])
 	for(i in 1:npixels) {
