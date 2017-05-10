@@ -1,9 +1,11 @@
-Package: RsimMosaic
+Package: RsimMosaicLDM
 Type: Package
 Title: R Simple Image Mosaic Creation Library
 Version: 1.0.3
 Date: 2017-04-03
-Author: Alberto Krone-Martins
+Author: c(
+          person("Alberto", "Krone-Martins", email = "algol@sim.ul.pt", role = c("aut", "cre")),
+          person("Lucy", "D'Agostino McGowan", email = "ld.mcgowan@vanderbilt.edu", role = c("ctb"))
 Maintainer: Alberto Krone-Martins <algol@sim.ul.pt>
 Description: Provides a way to transform an image into a mosaic composed from a set of smaller images (tiles). It also contains a simple function for creating the tiles from a folder of images directly through R, without the need of any external code. At this moment only the JPEG format is supported, either as input (image and tiles) or output (mosaic transformed image).
 License: GPL (>= 2)
