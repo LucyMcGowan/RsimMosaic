@@ -150,8 +150,7 @@ composeMosaicFromImageRandomOptim <-
       startI <- (pCoord[idx, 1] - 2) * xTileSize + 1
       startJ <- (pCoord[idx, 2] - 2) * yTileSize + 1
       outputImage[startI:(startI + xTileSize - 1),
-                  startJ:(startJ + yTileSize - 1),] <-
-        jpeg::readJPEG(tileFilename)
+                  startJ:(startJ + yTileSize - 1),] <- jpeg::readJPEG(tileFilename)
       
       # it the user wants to remove the tile that was used, so there will be less repetitions...
       if (removeTiles) {
@@ -176,6 +175,7 @@ composeMosaicFromImageRandomOptim <-
     
     if (verbose) {
       cat(paste("\n"))
+      cat(sprintf("We used %s unique tiles to make your pretty mosaic!", length(removedList)))
       cat(paste("    Done!\n\n"))
     }
     
