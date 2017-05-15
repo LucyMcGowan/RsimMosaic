@@ -125,6 +125,7 @@ composeMosaicFromImageRandomOptim <-
     }
     
     libForMosaic <- libForMosaicFull
+    all_tiles <- NULL
     # for the length
     npixels <- length(pCoord[, 1])
     for (i in 1:npixels) {
@@ -171,11 +172,12 @@ composeMosaicFromImageRandomOptim <-
       if (length(pCoord[, 1]) > 2) {
         pCoord <- pCoord[-idx, ]
       }
+      all_tiles <- c(all_tiles, tileFilename)
     }
     
     if (verbose) {
       cat(paste("\n"))
-      cat(sprintf("We used %s unique tiles to make your pretty mosaic!", length(removedList)))
+      cat(sprintf("We used %s unique tiles to make your pretty mosaic!", length(unique(all_tiles))))
       cat(paste("    Done!\n\n"))
     }
     
